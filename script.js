@@ -15,7 +15,18 @@ async function searchImages(){
     const response = await fetch(url);
     const data = await response.json();
 
-    console.log(data);
+    const results = data.results;
+
+    results.map((result)=>{
+        const image = document.createElement("img");
+        image.scr = result.urls.small;
+        
+        const imageLink = document.createElement("a");
+        imageLink.href = result.links.html;
+        imageLink.target = "_blank";
+
+        imageLink.appendChild(image);
+    })
 }
 
 searchForm.addEventListener("submit", (e) => {
